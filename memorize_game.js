@@ -1,4 +1,4 @@
-var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin")
+var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
 (function(){
     'use strict'; 
     require.config({ 
