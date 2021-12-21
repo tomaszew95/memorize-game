@@ -14,6 +14,9 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
             .done(function (experience) { 
                 window.myExperience = experience
 
+                var rotationIntensity = parseFloat(memorizeGamePlugin.getAttribute("rotation-intensity"))*2  //"*2" because "randomValue" is between "-.5" and ".5"
+                var waitingTime = parseInt(memorizeGamePlugin.getAttribute("waiting-time"))
+
                 //gathering all Ceros objects
                 var playGame = experience.findLayersByTag("start-game")
                 var timelines = experience.findLayersByTag("timeline").layers
@@ -21,14 +24,11 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                 var reveals = experience.findLayersByTag("reveal")
                 var fronts = experience.findLayersByTag("front")
                 var backs = experience.findLayersByTag("back")
-                console.log('works0')
 
                 experience.on(CerosSDK.EVENTS.PAGE_CHANGED, pageChangedCallback);
                 function pageChangedCallback(){
                     let pageContainer = document.querySelector(".page-viewport.top > .page-container")
-                    let rotationIntensity = parseFloat(memorizeGamePlugin.getAttribute("rotation-intensity"))*2 //"*2" because "randomValue" is between "-.5" and ".5"
 
-                    console.log('works1')
                     //setting timeline and congratulation pop-up
                     let timeline = null
                     let congratulationPopup = null
@@ -43,7 +43,6 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                     }
                     timeline = mainFilter(timelines)[0]
                     congratulationPopup = mainFilter(congratulationPopups)[0]
-                    console.log('works2')
 
                     //gathering objects into arrays
                     let groupsArray = []
@@ -56,7 +55,6 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                     let totalNumber = 0
                     let correctAnswers = 0
 
-                    console.log('works3')
                     //initial function for starting the game
                     var startGame = () =>{
                         for(let i = 0; i<reveals.layers.length; i++){
@@ -65,7 +63,6 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                             let hot = document.getElementById(reveals.layers[i].id)
                             let cardGroup = $(hot).parent()[0]
                             groupsArray.push(cardGroup)
-                            console.log('works4')
                             
                             let objectPosition = {
                                 positionX: cardGroup.style.left, 
@@ -119,7 +116,6 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                         twoBacks.push(cerosCard(backs))
 
                         if(maxTwo ==2 && totalNumber ==0){
-                            console.log('good work!')
                             twoCards = []
                             twoBacks = []
                             maxTwo = 0
@@ -131,7 +127,6 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                             }
                         }
                         else if(maxTwo==2){
-                            console.log('try again!')
                             for(let reveal of reveals.layers){
                                 reveal.hide()
                             }
@@ -150,7 +145,7 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                                 }
                                 twoBacks = []
                                 
-                            }, 1200)
+                            }, waitingTime)
 
                             maxTwo = 0
                             totalNumber = 0
