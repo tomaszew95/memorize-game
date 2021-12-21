@@ -21,12 +21,14 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                 var reveals = experience.findLayersByTag("reveal")
                 var fronts = experience.findLayersByTag("front")
                 var backs = experience.findLayersByTag("back")
+                console.log('works0')
 
                 experience.on(CerosSDK.EVENTS.PAGE_CHANGED, pageChangedCallback);
                 function pageChangedCallback(){
                     let pageContainer = document.querySelector(".page-viewport.top > .page-container")
                     let rotationIntensity = parseFloat(memorizeGamePlugin.getAttribute("rotation-intensity"))*2 //"*2" because "randomValue" is between "-.5" and ".5"
 
+                    console.log('works1')
                     //setting timeline and congratulation pop-up
                     let timeline = null
                     let congratulationPopup = null
@@ -41,6 +43,7 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                     }
                     timeline = mainFilter(timelines)[0]
                     congratulationPopup = mainFilter(congratulationPopups)[0]
+                    console.log('works2')
 
                     //gathering objects into arrays
                     let groupsArray = []
@@ -53,6 +56,7 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                     let totalNumber = 0
                     let correctAnswers = 0
 
+                    console.log('works3')
                     //initial function for starting the game
                     var startGame = () =>{
                         for(let i = 0; i<reveals.layers.length; i++){
@@ -61,6 +65,7 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                             let hot = document.getElementById(reveals.layers[i].id)
                             let cardGroup = $(hot).parent()[0]
                             groupsArray.push(cardGroup)
+                            console.log('works4')
                             
                             let objectPosition = {
                                 positionX: cardGroup.style.left, 
