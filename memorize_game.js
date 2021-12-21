@@ -16,8 +16,8 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
 
                 //gathering all Ceros objects
                 var playGame = experience.findLayersByTag("start-game")
-                var timelines = experience.findLayersByTag("timeline")
-                var congratulationPopups = experience.findLayersByTag("congratulation")
+                var timelines = experience.findLayersByTag("timeline").layers
+                var congratulationPopups = experience.findLayersByTag("congratulation").layers
                 var reveals = experience.findLayersByTag("reveal")
                 var fronts = experience.findLayersByTag("front")
                 var backs = experience.findLayersByTag("back")
