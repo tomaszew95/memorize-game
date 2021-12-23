@@ -20,7 +20,7 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                 //gathering all Ceros objects
                 var playGame = experience.findLayersByTag("start-game")
                 var timelines = experience.findLayersByTag("timeline").layers
-                var congratulationPopups = experience.findLayersByTag("congratulation").layers
+                var congratulations = experience.findLayersByTag("congratulation").layers
                 var reveals = experience.findLayersByTag("reveal")
                 var fronts = experience.findLayersByTag("front")
                 var backs = experience.findLayersByTag("back")
@@ -31,7 +31,8 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
 
                     //setting timeline and congratulation pop-up
                     let timeline = null
-                    let congratulationPopup = null
+                    let congratulation = null
+                    let currentReveals = null
                     var mainFilter = (filterArray) =>{
                         let arr = filterArray.filter(($object) =>{
                             let $obj = document.getElementById($object.id)
@@ -42,7 +43,8 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                         return arr
                     }
                     timeline = mainFilter(timelines)[0]
-                    congratulationPopup = mainFilter(congratulationPopups)[0]
+                    congratulation = mainFilter(congratulations)[0]
+                    currentReveals = mainFilter(reveals.layers)
 
                     //gathering objects into arrays
                     let groupsArray = []
@@ -121,8 +123,8 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                             maxTwo = 0
 
                             correctAnswers++
-                            if(correctAnswers==6){ 
-                                congratulationPopup.show()
+                            if(correctAnswers==currentReveals.length){ 
+                                congratulation.click()
                                 correctAnswers=0
                             }
                         }
