@@ -123,7 +123,7 @@ var memorizeGamePlugin = document.getElementById("ceros-memorize-game-plugin");
                             maxTwo = 0
 
                             correctAnswers++
-                            if(correctAnswers==currentReveals.length){ 
+                            if(correctAnswers==(currentReveals.length/2)){
                                 congratulation.click()
                                 correctAnswers=0
                             }
